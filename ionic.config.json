@@ -1,0 +1,7 @@
+{
+  "name": "sms-ven",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
