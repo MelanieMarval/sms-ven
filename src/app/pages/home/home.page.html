@@ -1,0 +1,49 @@
+<app-header title="Inicio"></app-header>
+
+<ion-content>
+
+    <ion-list class="ion-padding">
+
+        <ion-list-header class="ion-text-center ion-no-padding ion-padding-bottom">
+            Por favor agregue todos los datos sin puntos, comas ni ningún caracter especial.
+        </ion-list-header>
+
+        <ion-item *ngIf="!data.bank" button detailIcon="caret-down-sharp" [detail]="true" (click)="openBankList()">
+            <ion-label>Banco destino</ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="data.bank" (click)="openBankList()">
+            <ion-label position="floating">Banco destino</ion-label>
+            <ion-input type="text" [value]="'(' + data.bank.code + ') ' + data.bank.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Número de teléfono</ion-label>
+            <ion-input type="tel" required [minlength]="1" [maxlength]="11"
+                       [(ngModel)]="data.phone" placeholder="Ej: 04120001122">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Cédula o pasaporte</ion-label>
+            <ion-input type="text" required [minlength]="1" [maxlength]="8"
+                       [(ngModel)]="data.identification" placeholder="Ej: 00111222">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Monto</ion-label>
+            <ion-input type="number" required  [min]="1"
+                       [(ngModel)]="data.amount" placeholder="Ej: 500000">
+            </ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" (click)="validate()" [disabled]="loading">
+            <span *ngIf="!loading">Enviar Pago</span>
+            <ion-spinner *ngIf="loading"></ion-spinner>
+        </ion-button>
+
+    </ion-list>
+
+
+</ion-content>
